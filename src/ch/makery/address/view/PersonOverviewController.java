@@ -77,8 +77,6 @@ public class PersonOverviewController {
             streetLabel.setText(person.getStreet());
             postalCodeLabel.setText(Integer.toString(person.getPostalCode()));
             cityLabel.setText(person.getCity());
-
-            // TODO: Нам нужен способ для перевода дня рождения в тип String!
             birthdayLabel.setText(DateUtil.format(person.getBirthday()));
         } else {
             // Если Person = null, то убираем весь текст.
