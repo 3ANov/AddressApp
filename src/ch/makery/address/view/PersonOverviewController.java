@@ -1,5 +1,6 @@
 package ch.makery.address.view;
 
+import ch.makery.address.util.DateUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -60,4 +61,36 @@ public class PersonOverviewController {
         // Добавление в таблицу данных из наблюдаемого списка
         personTable.setItems(mainApp.getPersonData());
     }
+
+
+    /**
+     * Заполняет все текстовые поля, отображая подробности об адресате.
+     * Если указанный адресат = null, то все текстовые поля очищаются.
+     *
+     * @param person — адресат типа Person или null
+     */
+    private void showPersonDetails(Person person) {
+        if (person != null) {
+            // Заполняем метки информацией из объекта person.
+            firstNameLabel.setText(person.getFirstName());
+            lastNameLabel.setText(person.getLastName());
+            streetLabel.setText(person.getStreet());
+            postalCodeLabel.setText(Integer.toString(person.getPostalCode()));
+            cityLabel.setText(person.getCity());
+
+            // TODO: Нам нужен способ для перевода дня рождения в тип String!
+            birthdayLabel.setText(DateUtil.format(person.getBirthday()));
+        } else {
+            // Если Person = null, то убираем весь текст.
+            firstNameLabel.setText("");
+            lastNameLabel.setText("");
+            streetLabel.setText("");
+            postalCodeLabel.setText("");
+            cityLabel.setText("");
+            birthdayLabel.setText("");
+        }
+    }
+
+
+
 }
